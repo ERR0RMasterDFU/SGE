@@ -38,7 +38,7 @@ def duracion_total(registro, estado):
 
 def comentario_mas_largo(registros, anyo, palabra):
 
-    elegido = ""
+    '''elegido = ""
     avistamientoElegido = None
     fallo = "No se ha encontrado"
 
@@ -48,5 +48,20 @@ def comentario_mas_largo(registros, anyo, palabra):
                 elegido = avistamiento.comentarios
                 avistamientoElegido = avistamiento
 
-    return avistamientoElegido if avistamientoElegido else fallo
+    return avistamientoElegido if avistamientoElegido else fallo'''
 
+    elegido=""
+    condiciones = []
+
+    for avistamiento in registros:
+        if anyo == avistamiento.fechaHora.strftime('%Y') and palabra in avistamiento.comentarios:
+            condiciones.append(avistamiento)
+
+    for avistamiento in condiciones:
+        if len(avistamiento.comentarios) > len(elegido):
+            elegido = avistamiento
+
+    if len(condiciones) == 0:
+       return "No se ha encontrado ningún avistamiento que conincida."
+    else:
+       return elegido

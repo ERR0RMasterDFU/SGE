@@ -1,7 +1,5 @@
 import os
 
-from IPython.core.debugger import prompt
-
 from ufos import lee_avistamientos
 from ufos import duracion_total
 from ufos import comentario_mas_largo
@@ -32,7 +30,7 @@ for estado in estados:
 
 anyo = input("Por favor, introduzca un año (4 dígitos).")
 palabra = input("Por favor, introduzca una palabra.")
-comentario_mas_largo = comentario_mas_largo(avistamientos, anyo, palabra)
+comentario_mas_largo = comentario_mas_largo(avistamientos, int(anyo), palabra)
 
 print(f"El avistamiento con el comentario más largo de {anyo} incluyendo la palabra {palabra} es: {comentario_mas_largo}")
 
