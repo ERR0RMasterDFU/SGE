@@ -33,35 +33,35 @@ def lee_avistamientos(fichero):
 
 def duracion_total(registro, estado):
     duracion = sum(avistamiento.duracion for avistamiento in registro if estado.lower() == avistamiento.estado.lower())
-    return duracion;
+    return duracion
 
 
 def comentario_mas_largo(registros, anyo, palabra):
-
-    '''elegido = ""
     avistamientoElegido = None
-    fallo = "No se ha encontrado"
 
     for avistamiento in registros:
         if anyo == avistamiento.fechaHora.strftime('%Y') and palabra in avistamiento.comentarios:
-            if len(elegido) < len(avistamiento.comentarios):
-                elegido = avistamiento.comentarios
+            if avistamientoElegido is None or len(avistamiento.comentarios) > len(avistamientoElegido.comentarios):
                 avistamientoElegido = avistamiento
 
-    return avistamientoElegido if avistamientoElegido else fallo'''
+    return avistamientoElegido if avistamientoElegido else "No se ha encontrado"
 
-    elegido=""
-    condiciones = []
+
+
+
+def indexa_formas_por_mes(registros):
+
+    diccionario = {}
 
     for avistamiento in registros:
-        if anyo == avistamiento.fechaHora.strftime('%Y') and palabra in avistamiento.comentarios:
-            condiciones.append(avistamiento)
+        # Obtener el nombre del mes
+        mes = avistamiento.fechaHora.strftime('%B')
 
-    for avistamiento in condiciones:
-        if len(avistamiento.comentarios) > len(elegido):
-            elegido = avistamiento
+        # Añadir la forma al conjunto correspondiente al mes
+        if mes not in diccionario:
+            diccionario[mes] = set()
 
-    if len(condiciones) == 0:
-       return "No se ha encontrado ningún avistamiento que conincida."
-    else:
-       return elegido
+        diccionario[mes].add(avistamiento.forma)
+
+    return diccionario
+
